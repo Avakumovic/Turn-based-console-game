@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream>
+#include "Object.h"
 
-class Character
+class Character : public Object
 {
 private:
 	std::string name;

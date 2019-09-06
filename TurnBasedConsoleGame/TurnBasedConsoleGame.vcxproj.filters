@@ -16,7 +16,7 @@
     <Filter Include="Actions">
       <UniqueIdentifier>{9aee9cb4-fe94-40d6-8a0d-4ad95d423063}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Characters">
+    <Filter Include="Objects">
       <UniqueIdentifier>{03b54785-abd1-4d6a-b0e8-20b4451c4949}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -36,6 +36,9 @@
     <ClInclude Include="Enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -48,13 +51,16 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="Character.cpp">
-      <Filter>Characters</Filter>
+      <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Characters</Filter>
+      <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>Characters</Filter>
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -13,7 +13,7 @@ Movement::~Movement()
 {
 }
 
-void Movement::MovePlayer(char map[10][20])
+void Movement::MovePlayer(char map[20][20])
 {
 	system("pause>nul");
 	if (GetAsyncKeyState(0x28)) {
@@ -21,7 +21,7 @@ void Movement::MovePlayer(char map[10][20])
 		if (map[y2][x] == ' ') {
 			map[y][x] = ' ';
 			y++;
-			map[y][x] = 'O';
+			map[y][x] = '@';
 		}
 	}
 
@@ -30,7 +30,7 @@ void Movement::MovePlayer(char map[10][20])
 		if (map[y2][x] == ' ') {
 			map[y][x] = ' ';
 			y--;
-			map[y][x] = 'O';
+			map[y][x] = '@';
 		}
 	}
 
@@ -39,7 +39,7 @@ void Movement::MovePlayer(char map[10][20])
 		if (map[y][x2] == ' ') {
 			map[y][x] = ' ';
 			x++;
-			map[y][x] = 'O';
+			map[y][x] = '@';
 		}
 	}
 
@@ -48,7 +48,7 @@ void Movement::MovePlayer(char map[10][20])
 		if (map[y][x2] == ' ') {
 			map[y][x] = ' ';
 			x--;
-			map[y][x] = 'O';
+			map[y][x] = '@';
 		}
 	}
 }
