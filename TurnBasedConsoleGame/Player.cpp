@@ -3,9 +3,9 @@
 
 Player::Player(std::string name = "Hero", int16_t health = 200, int16_t damage = 40)
 {
-	this->setName(name);
-	this->setHealth(health);
-	this->setDamage(damage);
+	this->SetName(name);
+	this->SetHealth(health);
+	this->GetDamage(damage);
 }
 
 

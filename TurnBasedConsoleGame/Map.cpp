@@ -20,7 +20,7 @@ Map::Map(char map[][20])
 				Enemy newEnemy;
 				newEnemy.setX_position(i);
 				newEnemy.setY_position(j);
-				objectList[counter] = newEnemy;
+				allObjects.emplace_back(newEnemy);
 				counter++;
 			}
 		}
@@ -30,9 +30,4 @@ Map::Map(char map[][20])
 
 Map::~Map()
 {
-}
-
-Object * Map::getObjectList()
-{
-	return objectList;
 }

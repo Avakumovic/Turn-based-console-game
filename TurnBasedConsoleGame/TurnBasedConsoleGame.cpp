@@ -12,29 +12,26 @@
 #include "Map.h"
 
 
-bool gameRunning = true;
 
-int x = 1;
-int y = 1;
-
-char map[20][20];
 
 
 int main()
 {	
+	bool gameRunning = true;
+	char map[20][20];
+
+
 	Map mapload(map);
-	Object* mainObjectList = mapload.getObjectList();
 	Movement movement;
-	Player player("Noob", 300, 40);
+	Player player("Noob", 200, 40);
 
 	while (gameRunning = true) {
 
 		system("cls");
 		std::cout << *map << std::endl;
 	
-		std::cout << "Player HP: " << player.getHealth() << std::endl;
+		std::cout << "Player HP: " << player.GetHealth() << std::endl;
 		movement.MovePlayer(map);
-
 
 	}
 	return 0;
