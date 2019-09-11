@@ -8,6 +8,6 @@ private:
 public:
 	Movement();
 	~Movement();
-	void MovePlayer(char map[10][20]);
+	void MovePlayer(char map[20][20]);
 };
 
