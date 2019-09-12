@@ -16,8 +16,8 @@ public:
 	void SetName(std::string newName);
 	int16_t GetHealth();
 	void SetHealth(int16_t newHealth);
-	void ChangeHealth(int16_t healthChange, bool sign);
+	void ChangeHealth(int16_t healthChange, char sign);
 	int16_t GetDamage();
-	void GetDamage(int16_t newDamage);
-	void ChangeDamage(int16_t damageChange, bool sign);
+	void SetDamage(int16_t newDamage);
+	void ChangeDamage(int16_t damageChange, char sign);
 };

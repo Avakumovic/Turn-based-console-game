@@ -4,14 +4,14 @@
 class Object
 {
 private:
-	int16_t x_position;
-	int16_t y_position;
+	int16_t _x_position;
+	int16_t _y_position;
 public:
 	Object();
 	~Object();
-	void setX_position(int16_t newX);
-	int16_t getX_position();
-	void setY_position(int16_t newY);
-	int16_t getY_position();
+	void SetX_position(int16_t newX);
+	int16_t GetX_position();
+	void SetY_position(int16_t newY);
+	int16_t GetY_position();
 };
 

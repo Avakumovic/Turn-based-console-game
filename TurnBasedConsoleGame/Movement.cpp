@@ -1,6 +1,10 @@
 #include "pch.h"
 #include "Movement.h"
+#include "Map.h"
+#include "Player.h"
+#include "Enemy.h"
 #include <Windows.h>
+#include <vector>
 
 
 Movement::Movement()
@@ -13,7 +17,14 @@ Movement::~Movement()
 {
 }
 
-void Movement::MovePlayer(char map[20][20])
+void Movement::HitsAchieved(Enemy enemy)
+{
+	Player* thePlayer = Player::GetPlayer();
+	thePlayer->ChangeHealth(enemy.GetDamage(), '-');
+	enemy.ChangeHealth(thePlayer->GetDamage(), '-');
+}
+
+void Movement::MovePlayer(char map[20][20], std::vector<Enemy>* enemyList)
 {
 	system("pause>nul");
 	if (GetAsyncKeyState(0x28)) {
@@ -22,6 +33,14 @@ void Movement::MovePlayer(char map[20][20])
 			map[_y][_x] = ' ';
 			_y++;
 			map[_y][_x] = '@';
+		}
+		else if (map[y2][_x] == '&')
+		{
+			for (unsigned int i = 0; i < enemyList->size(); i++) {
+				if (((*enemyList)[i].GetX_position() == y2) && ((*enemyList)[i].GetY_position() == _x)) {
+					HitsAchieved((*enemyList)[i]);
+				}
+			}
 		}
 	}
 

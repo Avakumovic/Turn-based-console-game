@@ -7,12 +7,10 @@
 #include <memory>
 #include <cstdlib>
 #include <fstream>
+#include <vector>
 #include "Movement.h"
 #include "Player.h"
 #include "Map.h"
-
-
-
 
 
 int main()
@@ -20,20 +18,31 @@ int main()
 	bool gameRunning = true;
 	char map[20][20];
 
-
 	Map mapload(map);
 	Movement movement;
-	Player player("Noob", 200, 40);
+	Player* player = Player::GetPlayer();
+	std::vector<Enemy>* objectList = mapload.GetAllObjects();
 
 	while (gameRunning = true) {
 
 		system("cls");
-		std::cout << *map << std::endl;
-	
-		std::cout << "Player HP: " << player.GetHealth() << std::endl;
-		movement.MovePlayer(map);
+		
+		for (int i = 0; i < 20; i++) {
+			for (int j = 0; j < 20; j++) {
+				std::cout << map[i][j];
+			}
+		}
+		
+		std::cout << "Player HP: " << player->GetHealth() << std::endl;
+		movement.MovePlayer(map, objectList);
 
+		system("cls");
+		
+		for (int i = 0; i < 20; i++) {
+			for (int j = 0; j < 20; j++) {
+				std::cout << map[i][j];
+			}
+		}
 	}
 	return 0;
-
 }
