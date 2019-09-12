@@ -8,7 +8,13 @@
 #include <vector>
 #include <sstream>
 
-Map::Map(char map[][20])
+Map* Map::instance = NULL;
+
+Map* Map::GetMap() {
+	return(instance);
+}
+
+Map::Map(char map[20][20])
 {
 	int counter = 0;
 	std::ifstream in;
@@ -18,9 +24,9 @@ Map::Map(char map[][20])
 			in.get(map[i][j]);
 			if (map[i][j] == '&') {
 				Enemy newEnemy;
-				newEnemy.setX_position(i);
-				newEnemy.setY_position(j);
-				objectList[counter] = newEnemy;
+				newEnemy.SetX_position(i);
+				newEnemy.SetY_position(j);
+				allObjects.emplace_back(newEnemy);
 				counter++;
 			}
 		}
@@ -32,7 +38,7 @@ Map::~Map()
 {
 }
 
-Object * Map::getObjectList()
+std::vector<Enemy>* Map::GetAllObjects()
 {
-	return objectList;
+	return &allObjects;
 }

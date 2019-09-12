@@ -3,9 +3,11 @@
 class Player : public Character
 {
 private:
-
+	static Player* instance;
+	Player();
+	Player(const Player&);
 public:
-	Player(std::string name, int16_t health, int16_t damage);
 	~Player();
+	static Player* GetPlayer();
 };
 

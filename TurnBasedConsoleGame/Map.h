@@ -1,15 +1,19 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 #include "Object.h"
 #include "Enemy.h"
 
 class Map
 {
 private:
-	Object objectList[];
+	static Map* instance;
+	Map(const Map&);
+	std::vector<Enemy> allObjects;
 public:
-	Map(char map[][20]);
+	static Map* GetMap();
+	Map(char map[20][20]);
 	~Map();
-	Object* getObjectList();
+	std::vector<Enemy>* GetAllObjects();
 };
