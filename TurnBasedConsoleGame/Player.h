@@ -1,13 +1,14 @@
 #pragma once
 #include "Character.h"
+#include <memory>
+
 class Player : public Character
 {
 private:
-	static Player* instance;
-	Player();
-	Player(const Player&);
+	static std::shared_ptr<Player> instance;
 public:
+	Player();
 	~Player();
-	static Player* GetPlayer();
+	static std::shared_ptr<Player> GetPlayer();
 };
 

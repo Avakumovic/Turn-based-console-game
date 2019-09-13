@@ -20,21 +20,21 @@ int main()
 
 	Map mapload(map);
 	Movement movement;
-	Player* player = Player::GetPlayer();
-	std::vector<Enemy>* objectList = mapload.GetAllObjects();
+	std::shared_ptr<Player> player(Player::GetPlayer());
+	std::shared_ptr<std::vector<Enemy>> enemyList = mapload.GetAllEnemies();
 
-	while (gameRunning = true) {
-
-		system("cls");
+	system("cls");
 		
 		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 20; j++) {
 				std::cout << map[i][j];
 			}
 		}
-		
+
+	while (gameRunning = true) {
+
 		std::cout << "Player HP: " << player->GetHealth() << std::endl;
-		movement.MovePlayer(map, objectList);
+		movement.MovePlayer(map, enemyList);
 
 		system("cls");
 		

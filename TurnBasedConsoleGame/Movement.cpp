@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include <Windows.h>
 #include <vector>
+#include <memory>
 
 
 Movement::Movement()
@@ -17,15 +18,47 @@ Movement::~Movement()
 {
 }
 
-void Movement::HitsAchieved(Enemy enemy)
+void Movement::HitsAchieved(Enemy& enemy)
 {
-	Player* thePlayer = Player::GetPlayer();
+	std::shared_ptr<Player> thePlayer(Player::GetPlayer());
 	thePlayer->ChangeHealth(enemy.GetDamage(), '-');
 	enemy.ChangeHealth(thePlayer->GetDamage(), '-');
+	
 }
 
-void Movement::MovePlayer(char map[20][20], std::vector<Enemy>* enemyList)
+void Movement::TickRender(char map[20][20])
 {
+	
+	system("cls");
+	std::shared_ptr<Player> thePlayer(Player::GetPlayer());
+
+	for (int i = 0; i < 20; i++) {
+		for (int j = 0; j < 20; j++) {
+			std::cout << map[i][j];
+		}
+	}
+
+	//std::cout << "Player HP: " << thePlayer->GetHealth() << std::endl;
+	//movement.MovePlayer(map, enemyList);
+
+	system("cls");
+
+	for (int i = 0; i < 20; i++) {
+		for (int j = 0; j < 20; j++) {
+			std::cout << map[i][j];
+		}
+	}
+}
+
+void Movement::TickPrinter()
+{
+
+}
+
+
+void Movement::MovePlayer(char map[20][20], std::shared_ptr<std::vector<Enemy>> enemyList)
+{
+
 	system("pause>nul");
 	if (GetAsyncKeyState(0x28)) {
 		int y2 = _y + 1;
@@ -39,6 +72,10 @@ void Movement::MovePlayer(char map[20][20], std::vector<Enemy>* enemyList)
 			for (unsigned int i = 0; i < enemyList->size(); i++) {
 				if (((*enemyList)[i].GetX_position() == y2) && ((*enemyList)[i].GetY_position() == _x)) {
 					HitsAchieved((*enemyList)[i]);
+					if (((*enemyList)[i]).GetHealth() == 0) {
+						enemyList->erase(enemyList->begin()+i);
+						map[y2][_x] = ' ';
+					}
 				}
 			}
 		}
@@ -70,4 +107,6 @@ void Movement::MovePlayer(char map[20][20], std::vector<Enemy>* enemyList)
 			map[_y][_x] = '@';
 		}
 	}
+
+
 }

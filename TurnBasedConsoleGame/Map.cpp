@@ -8,9 +8,17 @@
 #include <vector>
 #include <sstream>
 
-Map* Map::instance = NULL;
+std::shared_ptr<Map> Map::instance = NULL;
 
-Map* Map::GetMap() {
+std::shared_ptr<Map> Map::GetMap(char map[20][20]) {
+	if (instance == NULL) {
+		instance = std::make_shared<Map>(Map(map));
+	}
+	return(instance);
+}
+
+std::shared_ptr<Map> Map::GetMap()
+{
 	return(instance);
 }
 
@@ -21,12 +29,13 @@ Map::Map(char map[20][20])
 	in.open("Map.txt");
 	for (int i = 0; i < 20; i++) {
 		for (int j = 0; j < 20; j++) {
+			//in.get(mainMap[i][j]);
 			in.get(map[i][j]);
 			if (map[i][j] == '&') {
 				Enemy newEnemy;
 				newEnemy.SetX_position(i);
 				newEnemy.SetY_position(j);
-				allObjects.emplace_back(newEnemy);
+				allEnemies.emplace_back(newEnemy);
 				counter++;
 			}
 		}
@@ -38,7 +47,8 @@ Map::~Map()
 {
 }
 
-std::vector<Enemy>* Map::GetAllObjects()
+std::shared_ptr<std::vector<Enemy>> Map::GetAllEnemies()
 {
-	return &allObjects;
+	std::shared_ptr<std::vector<Enemy>> ptr_allEnemies = std::make_shared<std::vector<Enemy>>(allEnemies);
+	return ptr_allEnemies;
 }
