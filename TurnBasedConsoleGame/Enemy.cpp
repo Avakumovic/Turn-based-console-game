@@ -12,7 +12,7 @@ Enemy::Enemy(std::string name, int16_t health, int16_t damage, int16_t x, int16_
 
 Enemy::Enemy()
 {
-	this->SetName("Bot");
+	this->SetName("Troll");
 	this->SetHealth(100);
 	this->SetDamage(15);
 }

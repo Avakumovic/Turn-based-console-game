@@ -10,28 +10,27 @@
 
 std::shared_ptr<Map> Map::instance = NULL;
 
-std::shared_ptr<Map> Map::GetMap(char map[20][20]) {
+std::shared_ptr<Map> Map::GetMap() {
 	if (instance == NULL) {
-		instance = std::make_shared<Map>(Map(map));
+		instance = std::make_shared<Map>(Map());
 	}
 	return(instance);
 }
 
-std::shared_ptr<Map> Map::GetMap()
+std::shared_ptr<char[][20]> Map::GetMapInstance()
 {
-	return(instance);
+	return std::shared_ptr<char[][20]>(mainMap);
 }
 
-Map::Map(char map[20][20])
+Map::Map()
 {
 	int counter = 0;
 	std::ifstream in;
 	in.open("Map.txt");
 	for (int i = 0; i < 20; i++) {
 		for (int j = 0; j < 20; j++) {
-			//in.get(mainMap[i][j]);
-			in.get(map[i][j]);
-			if (map[i][j] == '&') {
+			in.get(mainMap[i][j]);
+			if (mainMap[i][j] == '&') {
 				Enemy newEnemy;
 				newEnemy.SetX_position(i);
 				newEnemy.SetY_position(j);

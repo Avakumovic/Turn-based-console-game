@@ -16,12 +16,11 @@
 int main()
 {	
 	bool gameRunning = true;
-	char map[20][20];
-
-	Map mapload(map);
+	std::shared_ptr<Map> mapload(Map::GetMap());
+	auto map = mapload->GetMapInstance();
 	Movement movement;
 	std::shared_ptr<Player> player(Player::GetPlayer());
-	std::shared_ptr<std::vector<Enemy>> enemyList = mapload.GetAllEnemies();
+	std::shared_ptr<std::vector<Enemy>> enemyList = mapload->GetAllEnemies();
 
 	system("cls");
 		
@@ -30,19 +29,11 @@ int main()
 				std::cout << map[i][j];
 			}
 		}
+		std::cout << "Player HP: " << player->GetHealth() << std::endl;
 
 	while (gameRunning = true) {
 
-		std::cout << "Player HP: " << player->GetHealth() << std::endl;
 		movement.MovePlayer(map, enemyList);
-
-		system("cls");
-		
-		for (int i = 0; i < 20; i++) {
-			for (int j = 0; j < 20; j++) {
-				std::cout << map[i][j];
-			}
-		}
 	}
 	return 0;
 }

@@ -10,9 +10,10 @@ private:
 public:
 	Movement();
 	~Movement();
-	void MovePlayer(char map[20][20], std::shared_ptr<std::vector<Enemy>>);
-	void HitsAchieved(Enemy& enemy);
-	void TickRender(char map[20][20]);
-	void TickPrinter();
+	void MovePlayer(std::shared_ptr<char[][20]>, std::shared_ptr<std::vector<Enemy>>);
+	void HitsAchieved(Enemy&);
+	void TickRender();
+	void TickPrinter(Enemy&);
+	void EnemyInteraction(char*, std::shared_ptr<std::vector<Enemy>>, int*, bool);
 };
 
