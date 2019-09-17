@@ -1,13 +1,12 @@
 #include "pch.h"
 #include "Enemy.h"
 
-Enemy::Enemy(std::string name, int16_t health, int16_t damage, int16_t x, int16_t y)
+Enemy::Enemy(std::string name, int health, int damage, int index)
 {
 	this->SetName(name);
 	this->SetHealth(health);
 	this->SetDamage(damage);
-	this->SetX_position(x);
-	this->SetX_position(y);
+	this->SetIndex(index);
 }
 
 Enemy::Enemy()

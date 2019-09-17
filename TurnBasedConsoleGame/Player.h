@@ -11,4 +11,3 @@ public:
 	~Player();
 	static std::shared_ptr<Player> GetPlayer();
 };
-

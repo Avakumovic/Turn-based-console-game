@@ -6,7 +6,9 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <iterator>
 #include <sstream>
+#include <algorithm> 
 
 std::shared_ptr<Map> Map::instance = NULL;
 
@@ -17,27 +19,26 @@ std::shared_ptr<Map> Map::GetMap() {
 	return(instance);
 }
 
-std::shared_ptr<char[][20]> Map::GetMapInstance()
+std::shared_ptr<std::vector<char>> Map::GetMapInstance()
 {
-	return std::shared_ptr<char[][20]>(mainMap);
+	return std::make_shared<std::vector<char>>(mainMap);
 }
 
 Map::Map()
 {
 	int counter = 0;
 	std::ifstream in;
+	char input;
 	in.open("Map.txt");
-	for (int i = 0; i < 20; i++) {
-		for (int j = 0; j < 20; j++) {
-			in.get(mainMap[i][j]);
-			if (mainMap[i][j] == '&') {
-				Enemy newEnemy;
-				newEnemy.SetX_position(i);
-				newEnemy.SetY_position(j);
-				allEnemies.emplace_back(newEnemy);
-				counter++;
-			}
+	while (in.get(input)) {
+		mainMap.emplace_back(input);
+		if (input == '&') {
+			//ovde moze da se doda neka random funkcija kako bi svaki novi protivnik imao random parametre, umesto default konstruktora
+			Enemy newEnemy("Wraith", 100, 17, counter);
+			allEnemies.emplace_back(newEnemy);
+			
 		}
+		counter++;
 	}
 	in.close();
 }
@@ -50,4 +51,9 @@ std::shared_ptr<std::vector<Enemy>> Map::GetAllEnemies()
 {
 	std::shared_ptr<std::vector<Enemy>> ptr_allEnemies = std::make_shared<std::vector<Enemy>>(allEnemies);
 	return ptr_allEnemies;
+}
+
+void Map::ChangeMap(int index, char element)
+{
+	mainMap[index] = element;
 }

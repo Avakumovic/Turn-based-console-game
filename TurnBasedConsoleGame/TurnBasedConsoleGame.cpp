@@ -6,7 +6,6 @@
 #include <Windows.h>
 #include <memory>
 #include <cstdlib>
-#include <fstream>
 #include <vector>
 #include "Movement.h"
 #include "Player.h"
@@ -17,23 +16,20 @@ int main()
 {	
 	bool gameRunning = true;
 	std::shared_ptr<Map> mapload(Map::GetMap());
-	auto map = mapload->GetMapInstance();
+	std::shared_ptr<std::vector<char>> map = mapload->GetMapInstance();
 	Movement movement;
 	std::shared_ptr<Player> player(Player::GetPlayer());
 	std::shared_ptr<std::vector<Enemy>> enemyList = mapload->GetAllEnemies();
 
 	system("cls");
-		
-		for (int i = 0; i < 20; i++) {
-			for (int j = 0; j < 20; j++) {
-				std::cout << map[i][j];
-			}
-		}
-		std::cout << "Player HP: " << player->GetHealth() << std::endl;
+	for (std::vector<char>::iterator i = (*map).begin(); i != (*map).end(); i++) {
+		std::cout << *i;
+	}		
+	std::cout << "Player HP: " << player->GetHealth() << std::endl;
 
 	while (gameRunning = true) {
 
-		movement.MovePlayer(map, enemyList);
+		movement.MovePlayer(enemyList);
 	}
 	return 0;
 }

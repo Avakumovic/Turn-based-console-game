@@ -10,11 +10,13 @@ class Map
 private:
 	static std::shared_ptr<Map> instance;
 	std::vector<Enemy> allEnemies;
+	
 public:
-	char mainMap[20][20];
+	std::vector<char> mainMap;
 	static std::shared_ptr<Map> GetMap();
-	std::shared_ptr<char[][20]> GetMapInstance();
+	std::shared_ptr<std::vector<char>> GetMapInstance();
 	Map();
 	~Map();
 	std::shared_ptr<std::vector<Enemy>> GetAllEnemies();
+	void ChangeMap(int, char);
 };
