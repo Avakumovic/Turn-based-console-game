@@ -6,11 +6,15 @@ class Movement
 private:
 	int _x = 1;
 	int _y = 1;
-
+	int _index = 21; //pocetna pozicija playera
+	int _lineSize = 20;
 public:
 	Movement();
 	~Movement();
-	void MovePlayer(char map[20][20], std::vector<Enemy>*);
-	void HitsAchieved(Enemy enemy);
+	void MovePlayer(std::shared_ptr<std::vector<Enemy>>);
+	void HitsAchieved(Enemy&);
+	void TickRender();
+	void TickPrinter(Enemy&);
+	void EnemyInteraction(int, std::shared_ptr<std::vector<Enemy>>);
 };
 

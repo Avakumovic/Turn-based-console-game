@@ -6,18 +6,21 @@ class Character : public Object
 {
 private:
 	std::string _name;
-	int16_t _health;
-	int16_t _damage;
+	int _maxHealth;
+	int _health;
+	int _damage;
 public:
 	Character();
 	~Character();
-
 	std::string GetName();
 	void SetName(std::string newName);
-	int16_t GetHealth();
-	void SetHealth(int16_t newHealth);
-	void ChangeHealth(int16_t healthChange, char sign);
-	int16_t GetDamage();
-	void SetDamage(int16_t newDamage);
-	void ChangeDamage(int16_t damageChange, char sign);
+	int GetMaxHealth();
+	void SetMaxHealth(int newHealth);
+	void ChangeMaxHealth(int healthChange, char sign);
+	int GetHealth();
+	void SetHealth(int newHealth);
+	void ChangeHealth(int healthChange, char sign);
+	int GetDamage();
+	void SetDamage(int newDamage);
+	void ChangeDamage(int damageChange, char sign);
 };

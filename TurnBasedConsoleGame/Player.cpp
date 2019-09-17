@@ -1,13 +1,13 @@
 #include "pch.h"
 #include "Player.h"
 
-Player* Player::instance = NULL;
+std::shared_ptr<Player> Player::instance = NULL;
 
-Player* Player::GetPlayer() {
+std::shared_ptr<Player> Player::GetPlayer() {
 	if (instance == NULL) {
-		instance = new Player();
+		instance = std::make_shared<Player>(Player());
 	}
-	return(instance);
+	return (instance);
 }
 
 Player::Player()

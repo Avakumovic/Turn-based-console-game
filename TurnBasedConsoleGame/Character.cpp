@@ -17,16 +17,16 @@ void Character::SetName(std::string newName) {
 	_name = newName;
 }
 
-int16_t Character::GetHealth() {
+int Character::GetMaxHealth() {
 	return _health;
 }
 
-void Character::SetHealth(int16_t newHealth) {
+void Character::SetMaxHealth(int newHealth) {
 	_health = newHealth;
 }
 
-void Character::ChangeHealth(int16_t healthChange, char sign) {
-	if (sign == '+') { //add hp
+void Character::ChangeMaxHealth(int healthChange, char sign) {
+	if (sign == '+') { //increase hp
 		_health += healthChange;
 		if (_health > 100)
 			_health = 100;
@@ -39,16 +39,38 @@ void Character::ChangeHealth(int16_t healthChange, char sign) {
 	}
 }
 
-int16_t Character::GetDamage() {
+int Character::GetHealth() {
+	return _health;
+}
+
+void Character::SetHealth(int newHealth) {
+	_health = newHealth;
+}
+
+void Character::ChangeHealth(int healthChange, char sign) {
+	if (sign == '+') { //increase hp
+		_health += healthChange;
+		if (_health > _maxHealth)
+			_health = _maxHealth;
+	}
+	else { //reduce hp
+		_health -= healthChange;
+		if (_health < 0)
+			_health = 0;
+		//poginuo
+	}
+}
+
+int Character::GetDamage() {
 	return _damage;
 }
 
-void Character::SetDamage(int16_t newDamage) {
+void Character::SetDamage(int newDamage) {
 	_damage = newDamage;
 }
 
-void Character::ChangeDamage(int16_t damageChange, char sign) {
-	if (sign == '+') { //add dmg
+void Character::ChangeDamage(int damageChange, char sign) {
+	if (sign == '+') { //increase dmg
 		_damage += damageChange;
 	}
 	else { //reduce dmg

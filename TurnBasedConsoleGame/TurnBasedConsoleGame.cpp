@@ -6,7 +6,6 @@
 #include <Windows.h>
 #include <memory>
 #include <cstdlib>
-#include <fstream>
 #include <vector>
 #include "Movement.h"
 #include "Player.h"
@@ -16,33 +15,21 @@
 int main()
 {	
 	bool gameRunning = true;
-	char map[20][20];
-
-	Map mapload(map);
+	std::shared_ptr<Map> mapload(Map::GetMap());
+	std::shared_ptr<std::vector<char>> map = mapload->GetMapInstance();
 	Movement movement;
-	Player* player = Player::GetPlayer();
-	std::vector<Enemy>* objectList = mapload.GetAllObjects();
+	std::shared_ptr<Player> player(Player::GetPlayer());
+	std::shared_ptr<std::vector<Enemy>> enemyList = mapload->GetAllEnemies();
+
+	system("cls");
+	for (std::vector<char>::iterator i = (*map).begin(); i != (*map).end(); i++) {
+		std::cout << *i;
+	}		
+	std::cout << "Player HP: " << player->GetHealth() << std::endl;
 
 	while (gameRunning = true) {
 
-		system("cls");
-		
-		for (int i = 0; i < 20; i++) {
-			for (int j = 0; j < 20; j++) {
-				std::cout << map[i][j];
-			}
-		}
-		
-		std::cout << "Player HP: " << player->GetHealth() << std::endl;
-		movement.MovePlayer(map, objectList);
-
-		system("cls");
-		
-		for (int i = 0; i < 20; i++) {
-			for (int j = 0; j < 20; j++) {
-				std::cout << map[i][j];
-			}
-		}
+		movement.MovePlayer(enemyList);
 	}
 	return 0;
 }

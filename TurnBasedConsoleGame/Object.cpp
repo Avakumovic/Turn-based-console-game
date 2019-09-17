@@ -11,22 +11,12 @@ Object::~Object()
 {
 }
 
-void Object::SetX_position(int16_t newX)
+void Object::SetIndex(int index)
 {
-	this->_x_position = newX;
+	this->_index = index;
 }
 
-int16_t Object::GetX_position()
+int Object::GetIndex()
 {
-	return _x_position;
-}
-
-void Object::SetY_position(int16_t newY)
-{
-	this->_y_position = newY;
-}
-
-int16_t Object::GetY_position()
-{
-	return _y_position;
+	return _index;
 }

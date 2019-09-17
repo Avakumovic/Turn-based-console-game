@@ -8,12 +8,15 @@
 class Map
 {
 private:
-	static Map* instance;
-	Map(const Map&);
-	std::vector<Enemy> allObjects;
+	static std::shared_ptr<Map> instance;
+	std::vector<Enemy> allEnemies;
+	
 public:
-	static Map* GetMap();
-	Map(char map[20][20]);
+	std::vector<char> mainMap;
+	static std::shared_ptr<Map> GetMap();
+	std::shared_ptr<std::vector<char>> GetMapInstance();
+	Map();
 	~Map();
-	std::vector<Enemy>* GetAllObjects();
+	std::shared_ptr<std::vector<Enemy>> GetAllEnemies();
+	void ChangeMap(int, char);
 };
