@@ -42,9 +42,6 @@
     <ClInclude Include="Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Render.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -69,9 +66,6 @@
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
-      <Filter>Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Render.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>

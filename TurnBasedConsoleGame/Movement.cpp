@@ -19,7 +19,8 @@ Movement::~Movement()
 
 void Movement::TickRender()
 {
-	system("cls");
+	printf("\033[%d;%dH", 1, 1);
+
 	std::shared_ptr<Map> mapload(Map::GetMap());
 	std::shared_ptr<std::vector<char>> map = mapload->GetMapInstance();
 
@@ -42,9 +43,8 @@ void Movement::TickPrinter(Enemy& enemy)
 	else {
 		std::cout << "Enemy HP: " << enemy.GetHealth() << std::endl;
 	}
-	
-	
 }
+
 
 void Movement::EnemyInteraction(int new_index, std::shared_ptr<std::vector<Enemy>> enemyList)
 {
@@ -84,6 +84,7 @@ void Movement::MovePlayer(std::shared_ptr<std::vector<Enemy>> enemyList)
 			_index += _lineSize;
 			mapload->ChangeMap(_index, '@');
 			TickRender();
+			std::cout << "\33[2K\r" << std::endl << "\33[2K\r" << std::endl << "\33[2K\r" << std::endl;
 		}
 		else if ((*map)[temp_pos] == '&')
 		{
@@ -98,6 +99,8 @@ void Movement::MovePlayer(std::shared_ptr<std::vector<Enemy>> enemyList)
 			_index -= _lineSize;
 			mapload->ChangeMap(_index, '@');
 			TickRender();
+			printf("\33[2K\r");
+			std::cout << "\33[2K\r" << std::endl << "\33[2K\r" << std::endl << "\33[2K\r" << std::endl;
 		}
 		else if ((*map)[temp_pos] == '&')
 		{
@@ -112,6 +115,7 @@ void Movement::MovePlayer(std::shared_ptr<std::vector<Enemy>> enemyList)
 			_index += 1;
 			mapload->ChangeMap(_index, '@');
 			TickRender();
+			std::cout << "\33[2K\r" << std::endl << "\33[2K\r" << std::endl << "\33[2K\r" << std::endl;
 		}
 		else if ((*map)[temp_pos] == '&')
 		{
@@ -126,6 +130,7 @@ void Movement::MovePlayer(std::shared_ptr<std::vector<Enemy>> enemyList)
 			_index -= 1;
 			mapload->ChangeMap(_index, '@');
 			TickRender();
+			std::cout << "\33[2K\r" << std::endl << "\33[2K\r" << std::endl << "\33[2K\r" << std::endl;
 		}
 		else if ((*map)[temp_pos] == '&')
 		{
