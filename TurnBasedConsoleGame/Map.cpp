@@ -16,7 +16,7 @@ std::shared_ptr<Map> Map::GetMap() {
 	if (instance == NULL) {
 		instance = std::make_shared<Map>(Map());
 	}
-	return(instance);
+	return (instance);
 }
 
 std::shared_ptr<std::vector<char>> Map::GetMapInstance()
@@ -36,7 +36,6 @@ Map::Map()
 			//ovde moze da se doda neka random funkcija kako bi svaki novi protivnik imao random parametre, umesto default konstruktora
 			Enemy newEnemy("Wraith", 100, 17, counter);
 			allEnemies.emplace_back(newEnemy);
-			
 		}
 		counter++;
 	}
@@ -49,7 +48,7 @@ Map::~Map()
 
 std::shared_ptr<std::vector<Enemy>> Map::GetAllEnemies()
 {
-	std::shared_ptr<std::vector<Enemy>> ptr_allEnemies = std::make_shared<std::vector<Enemy>>(allEnemies);
+	std::shared_ptr<std::vector<Enemy>> ptr_allEnemies = std::make_shared<std::vector<Enemy>>(instance->allEnemies);
 	return ptr_allEnemies;
 }
 

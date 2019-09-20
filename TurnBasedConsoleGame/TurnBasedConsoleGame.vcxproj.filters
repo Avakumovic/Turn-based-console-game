@@ -42,12 +42,18 @@
     <ClInclude Include="Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Render.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TurnBasedConsoleGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Movement.cpp">
@@ -66,6 +72,18 @@
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryUI.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Render.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>
