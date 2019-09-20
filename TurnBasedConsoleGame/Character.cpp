@@ -27,15 +27,12 @@ void Character::SetMaxHealth(int newHealth) {
 
 void Character::ChangeMaxHealth(int healthChange, char sign) {
 	if (sign == '+') { //increase hp
-		_health += healthChange;
-		if (_health > 100)
-			_health = 100;
+		_maxHealth += healthChange;
 	}
 	else { //reduce hp
-		_health -= healthChange;
-		if (_health < 0)
-			_health = 0;
-		//poginuo
+		_maxHealth -= healthChange;
+		if (_maxHealth < 0)
+			_maxHealth = 0;
 	}
 }
 

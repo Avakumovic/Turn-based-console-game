@@ -6,7 +6,7 @@ class Character : public Object
 {
 private:
 	std::string _name;
-	int _maxHealth;
+	int _maxHealth = 200;
 	int _health;
 	int _damage;
 public:
