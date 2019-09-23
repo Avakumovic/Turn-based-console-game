@@ -29,19 +29,19 @@ void Movement::MovePlayer(std::shared_ptr<std::vector<Enemy>> enemyList, int pre
 	switch (pressed_key)
 	{
 	case 80: //down
-		temp_pos = _index + _lineSize;
+		temp_pos = thePlayer->GetPosition() +_lineSize;
 		Move(temp_pos, enemyList);
 		break;
 	case 72: //up
-		temp_pos = _index - _lineSize;
+		temp_pos = thePlayer->GetPosition() - _lineSize;
 		Move(temp_pos, enemyList);
 		break;
 	case 77: //right
-		temp_pos = _index + 1;
+		temp_pos = thePlayer->GetPosition() + 1;
 		Move(temp_pos, enemyList);
 		break;
 	case 75: //left
-		temp_pos = _index - 1;
+		temp_pos = thePlayer->GetPosition() - 1;
 		Move(temp_pos, enemyList);
 		break;
 	default:
@@ -58,9 +58,9 @@ void Movement::Move(int targetPos, std::shared_ptr<std::vector<Enemy>> enemyList
 	switch ((*map)[targetPos])
 	{
 	case ' ':
-		mapload->ChangeMap(_index, ' ');
-		_index = targetPos;
-		mapload->ChangeMap(_index, '@');
+		mapload->ChangeMap(thePlayer->GetPosition(), ' ');
+		thePlayer->SetPosition(targetPos);
+		mapload->ChangeMap(thePlayer->GetPosition(), '@');
 		render->MapRender();
 		render->ClearLines();
 		break;
@@ -71,9 +71,9 @@ void Movement::Move(int targetPos, std::shared_ptr<std::vector<Enemy>> enemyList
 		srand((unsigned int)time(0));
 		Item init;
 		Item newItem = init.GetItem(rand() % 6 + 1);
-		mapload->ChangeMap(_index, ' ');
-		_index = targetPos;;
-		mapload->ChangeMap(_index, '@');
+		mapload->ChangeMap(thePlayer->GetPosition(), ' ');
+		thePlayer->SetPosition(targetPos);
+		mapload->ChangeMap(thePlayer->GetPosition(), '@');
 		thePlayer->AddItemToInventory(newItem);
 		render->MapRender();
 		render->NewItemPrint(newItem.GetItemName());

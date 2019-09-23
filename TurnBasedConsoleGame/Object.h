@@ -4,7 +4,6 @@
 class Object
 {
 private:
-
 	int _index;
 public:
 	Object();

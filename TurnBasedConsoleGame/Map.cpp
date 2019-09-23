@@ -33,8 +33,9 @@ Map::Map()
 	while (in.get(input)) {
 		mainMap.emplace_back(input);
 		if (input == '&') {
-			//ovde moze da se doda neka random funkcija kako bi svaki novi protivnik imao random parametre, umesto default konstruktora
-			Enemy newEnemy("Wraith", 100, 17, counter);
+			int randomHP = rand() % 150 + 50;
+			int randomDmg = rand() % 20 + 10;
+			Enemy newEnemy("Troll", randomHP, randomDmg, counter);
 			allEnemies.emplace_back(newEnemy);
 		}
 		counter++;

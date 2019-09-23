@@ -21,6 +21,15 @@ Player::~Player()
 {
 }
 
+void Player::SetPosition(int position) {
+	_position = this->_position;
+}
+
+int Player::GetPosition() {
+	return _position;
+}
+
+
 Item Player::GetEquipedWeapon() {
 	return _equiped_weapon;
 }

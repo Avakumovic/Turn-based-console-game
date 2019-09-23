@@ -4,9 +4,6 @@
 class Movement
 {
 private:
-	int _x = 1;
-	int _y = 1;
-	int _index = 21; //pocetna pozicija playera
 	int _lineSize = 20;
 public:
 	Movement();
