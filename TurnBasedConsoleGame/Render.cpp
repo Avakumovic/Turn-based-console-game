@@ -46,7 +46,7 @@ void Render::EnemyFightRender(Enemy& enemy)
 		std::cout << "Enemy killed!" << std::endl;
 	}
 	else {
-		std::cout << "Enemy HP: " << enemy.GetHealth() << std::endl;
+		std::cout << "Enemy HP: " << enemy.GetHealth() << "      " << std::endl;
 	}
 }
 

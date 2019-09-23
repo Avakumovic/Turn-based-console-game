@@ -12,11 +12,14 @@ private:
 	Item _equiped_armor;
 	bool _no_weapon = true;
 	bool _no_armor = true;
+	int _position = 21;
 	std::vector<Item> _inventory;
 public:
 	Player();
 	~Player();
 	static std::shared_ptr<Player> GetPlayer();
+	int GetPosition();
+	void SetPosition(int);
 	Item GetEquipedWeapon();
 	void SetEquipedWeapon(Item);
 	Item GetEquipedArmor();

@@ -1,16 +1,14 @@
 #pragma once
-
-#include <iostream>
-#include <vector>
 #include "Object.h"
 #include "Enemy.h"
+#include <iostream>
+#include <vector>
 
 class Map
 {
 private:
 	static std::shared_ptr<Map> instance;
 	std::vector<Enemy> allEnemies;
-	
 public:
 	std::vector<char> mainMap;
 	static std::shared_ptr<Map> GetMap();

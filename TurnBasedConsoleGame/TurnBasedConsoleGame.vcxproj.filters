@@ -91,5 +91,14 @@
     <Text Include="Map.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="MapSaved.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="ItemsSaved.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="EnemiesSaved.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

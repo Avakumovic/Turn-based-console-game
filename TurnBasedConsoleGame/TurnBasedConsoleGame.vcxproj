@@ -181,7 +181,10 @@
     <ClCompile Include="Render.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="EnemiesSaved.txt" />
+    <Text Include="ItemsSaved.txt" />
     <Text Include="Map.txt" />
+    <Text Include="MapSaved.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
