@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "Map.h"
-
 #include <iostream>
 #include <memory>
 #include <fstream>
@@ -16,7 +15,7 @@ std::shared_ptr<Map> Map::GetMap() {
 	if (instance == NULL) {
 		instance = std::make_shared<Map>(Map());
 	}
-	return (instance);
+	return instance;
 }
 
 std::shared_ptr<std::vector<char>> Map::GetMapInstance()
@@ -49,8 +48,7 @@ Map::~Map()
 
 std::shared_ptr<std::vector<Enemy>> Map::GetAllEnemies()
 {
-	std::shared_ptr<std::vector<Enemy>> ptr_allEnemies = std::make_shared<std::vector<Enemy>>(instance->allEnemies);
-	return ptr_allEnemies;
+	return std::make_shared<std::vector<Enemy>>(instance->allEnemies);
 }
 
 void Map::ChangeMap(int index, char element)

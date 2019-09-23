@@ -22,7 +22,7 @@ Player::~Player()
 }
 
 void Player::SetPosition(int position) {
-	_position = this->_position;
+	_position = position;
 }
 
 int Player::GetPosition() {

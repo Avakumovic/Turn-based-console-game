@@ -18,18 +18,13 @@
 
 int main()
 {	
-	
 	bool gameRunning = true;
-	std::shared_ptr<Map> mapload(Map::GetMap());
-	std::shared_ptr<std::vector<char>> map = mapload->GetMapInstance();
 	Movement movement;
 	InventoryUI inventoryUI;
-	std::shared_ptr<Render> render(Render::GetRender());
-	std::shared_ptr<Player> player(Player::GetPlayer());
-	std::shared_ptr<std::vector<Enemy>> enemyList = mapload->GetAllEnemies();
+	std::shared_ptr<std::vector<Enemy>> enemyList = Map::GetMap()->GetAllEnemies();
 	
 	system("cls");
-	render->MapRender();
+	(Render::GetRender())->MapRender();
 	int pressed_key;
 	int second_press;
 	bool canMove = false;
@@ -42,7 +37,7 @@ int main()
 		if (inventoryUI.GetInventoryActive() == false && canMove == true) {
 			movement.MovePlayer(enemyList, second_press);
 		}
-		if ((player->GetInventoryItems()).size() >= 1) {
+		if ((Player::GetPlayer()->GetInventoryItems()).size() >= 1) {
 			inventoryUI.OpenInventory(pressed_key);
 		}
 		if (pressed_key == 27) {

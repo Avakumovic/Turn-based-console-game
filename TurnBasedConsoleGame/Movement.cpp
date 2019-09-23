@@ -13,18 +13,14 @@ Movement::Movement()
 {
 }
 
-
 Movement::~Movement()
 {
 }
 
 void Movement::MovePlayer(std::shared_ptr<std::vector<Enemy>> enemyList, int pressed_key)
 {
-	std::shared_ptr<Render> render(Render::GetRender());
-	std::shared_ptr<Map> mapload(Map::GetMap());
-	std::shared_ptr<std::vector<char>> map = mapload->GetMapInstance();
 	std::shared_ptr<Player> thePlayer(Player::GetPlayer());
-	std::shared_ptr<std::vector<Enemy>> enemyList1 = mapload->GetAllEnemies();
+	std::shared_ptr<std::vector<Enemy>> enemyList1 = Map::GetMap()->GetAllEnemies();
 	int temp_pos;
 	switch (pressed_key)
 	{
@@ -53,9 +49,8 @@ void Movement::Move(int targetPos, std::shared_ptr<std::vector<Enemy>> enemyList
 {
 	std::shared_ptr<Render> render(Render::GetRender());
 	std::shared_ptr<Map> mapload(Map::GetMap());
-	std::shared_ptr<std::vector<char>> map = mapload->GetMapInstance();
 	std::shared_ptr<Player> thePlayer(Player::GetPlayer());
-	switch ((*map)[targetPos])
+	switch ((*(mapload->GetMapInstance()))[targetPos])
 	{
 	case ' ':
 		mapload->ChangeMap(thePlayer->GetPosition(), ' ');
@@ -91,21 +86,19 @@ void Movement::HitsAchieved(Enemy& enemy)
 void Movement::EnemyInteraction(int new_index, std::shared_ptr<std::vector<Enemy>> enemyList)
 {
 	std::shared_ptr<Render> render(Render::GetRender());
-	std::shared_ptr<Map> mapload(Map::GetMap());
-	std::shared_ptr<Player> thePlayer(Player::GetPlayer());
 	for (unsigned int i = 0; i < enemyList->size(); i++) {
 		auto text = (*enemyList)[i].GetIndex();
 		if ((*enemyList)[i].GetIndex() == new_index) {
 			HitsAchieved((*enemyList)[i]);
 			if (((*enemyList)[i]).GetHealth() == 0) {
-				mapload->ChangeMap(new_index, 'i');
+				(Map::GetMap())->ChangeMap(new_index, 'i');
 			}
 			render->MapRender();
 			render->EnemyFightRender((*enemyList)[i]);
 			if (((*enemyList)[i]).GetHealth() == 0) {
 				enemyList->erase(enemyList->begin() + i);
 			}
-			if (thePlayer->GetHealth() <= 0) {
+			if ((Player::GetPlayer())->GetHealth() <= 0) {
 				std::cout << ">>>>>>>>>>>> YOU HAVE DIED <<<<<<<<<<<<<" << std::endl;
 				exit(0);
 			}
