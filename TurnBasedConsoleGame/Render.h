@@ -11,7 +11,7 @@ public:
 	Render();
 	~Render();
 	void MapRender();
-	void EnemyFightRender(Enemy&);
+	void EnemyFightRender(Enemy*);
 	void ItemPrintRender(Item&);
 	void NewItemPrint(std::string);
 	void ClearLines();
