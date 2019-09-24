@@ -17,7 +17,6 @@ Render::Render()
 {
 }
 
-
 Render::~Render()
 {
 }
@@ -25,28 +24,23 @@ Render::~Render()
 void Render::MapRender()
 {
 	printf("\033[%d;%dH", 1, 1);
-
-	std::shared_ptr<Map> mapload(Map::GetMap());
-	std::shared_ptr<std::vector<char>> map = mapload->GetMapInstance();
-
-	std::shared_ptr<Player> thePlayer(Player::GetPlayer());
+	std::vector<char>* map = Map::GetMap()->GetMapInstance();
 
 	for (std::vector<char>::iterator i = (*map).begin(); i != (*map).end(); i++) {
 		std::cout << *i;
 	}
-	std::cout << "Player HP: " << thePlayer->GetHealth() << "      " << std::endl;
+	std::cout << "Player HP: " << Player::GetPlayer()->GetHealth() << "      " << std::endl;
 }
 
-void Render::EnemyFightRender(Enemy& enemy)
+void Render::EnemyFightRender(Enemy* enemy)
 {
-	std::shared_ptr<Player> thePlayer(Player::GetPlayer());
-	std::cout << "You've been hit for " << enemy.GetDamage() << "                                                                " << std::endl;
-	std::cout << "You've hit an enemy for " << thePlayer->GetDamage() << " damage!" << std::endl;
-	if (enemy.GetHealth() == 0) {
+	std::cout << "You've been hit for " << enemy->GetDamage() << "                                                                " << std::endl;
+	std::cout << "You've hit an enemy for " << Player::GetPlayer()->GetDamage() << " damage!" << std::endl;
+	if (enemy->GetHealth() == 0) {
 		std::cout << "Enemy killed!" << std::endl;
 	}
 	else {
-		std::cout << "Enemy HP: " << enemy.GetHealth() << "      " << std::endl;
+		std::cout << "Enemy HP: " << enemy->GetHealth() << "      " << std::endl;
 	}
 }
 

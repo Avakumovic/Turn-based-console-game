@@ -8,9 +8,9 @@ private:
 public:
 	Movement();
 	~Movement();
-	void MovePlayer(std::shared_ptr<std::vector<Enemy>>, int);
+	void MovePlayer(int);
 	void HitsAchieved(Enemy&);
-	void EnemyInteraction(int, std::shared_ptr<std::vector<Enemy>>);
-	void Move(int, std::shared_ptr<std::vector<Enemy>>);
+	void EnemyInteraction(int);
+	void Move(int);
 };
 

@@ -17,38 +17,38 @@ Movement::~Movement()
 {
 }
 
-void Movement::MovePlayer(std::shared_ptr<std::vector<Enemy>> enemyList, int pressed_key)
+//skloni ovaj parametar
+void Movement::MovePlayer(int pressed_key)
 {
 	std::shared_ptr<Player> thePlayer(Player::GetPlayer());
-	std::shared_ptr<std::vector<Enemy>> enemyList1 = Map::GetMap()->GetAllEnemies();
 	int temp_pos;
 	switch (pressed_key)
 	{
 	case 80: //down
 		temp_pos = thePlayer->GetPosition() +_lineSize;
-		Move(temp_pos, enemyList);
+		Move(temp_pos);
 		break;
 	case 72: //up
 		temp_pos = thePlayer->GetPosition() - _lineSize;
-		Move(temp_pos, enemyList);
+		Move(temp_pos);
 		break;
 	case 77: //right
 		temp_pos = thePlayer->GetPosition() + 1;
-		Move(temp_pos, enemyList);
+		Move(temp_pos);
 		break;
 	case 75: //left
 		temp_pos = thePlayer->GetPosition() - 1;
-		Move(temp_pos, enemyList);
+		Move(temp_pos);
 		break;
 	default:
 		break;
 	}
 }
 
-void Movement::Move(int targetPos, std::shared_ptr<std::vector<Enemy>> enemyList)
+void Movement::Move(int targetPos)
 {
 	std::shared_ptr<Render> render(Render::GetRender());
-	std::shared_ptr<Map> mapload(Map::GetMap());
+	Map* mapload(Map::GetMap());
 	std::shared_ptr<Player> thePlayer(Player::GetPlayer());
 	switch ((*(mapload->GetMapInstance()))[targetPos])
 	{
@@ -60,7 +60,7 @@ void Movement::Move(int targetPos, std::shared_ptr<std::vector<Enemy>> enemyList
 		render->ClearLines();
 		break;
 	case '&':
-		EnemyInteraction(targetPos, enemyList);
+		EnemyInteraction(targetPos);
 		break;
 	case 'i':
 		srand((unsigned int)time(0));
@@ -83,18 +83,18 @@ void Movement::HitsAchieved(Enemy& enemy)
 	enemy.ChangeHealth(thePlayer->GetDamage(), '-');
 }
 
-void Movement::EnemyInteraction(int new_index, std::shared_ptr<std::vector<Enemy>> enemyList)
+void Movement::EnemyInteraction(int new_index)
 {
 	std::shared_ptr<Render> render(Render::GetRender());
+	std::vector<Enemy>* enemyList = Map::GetMap()->GetAllEnemies();
 	for (unsigned int i = 0; i < enemyList->size(); i++) {
-		auto text = (*enemyList)[i].GetIndex();
 		if ((*enemyList)[i].GetIndex() == new_index) {
 			HitsAchieved((*enemyList)[i]);
 			if (((*enemyList)[i]).GetHealth() == 0) {
 				(Map::GetMap())->ChangeMap(new_index, 'i');
 			}
 			render->MapRender();
-			render->EnemyFightRender((*enemyList)[i]);
+			render->EnemyFightRender(&(*enemyList)[i]);
 			if (((*enemyList)[i]).GetHealth() == 0) {
 				enemyList->erase(enemyList->begin() + i);
 			}

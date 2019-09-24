@@ -9,18 +9,19 @@
 #include <sstream>
 #include <algorithm> 
 
-std::shared_ptr<Map> Map::instance = NULL;
+Map* Map::instance = NULL;
+//std::vector<Enemy> Map::allEnemies;
 
-std::shared_ptr<Map> Map::GetMap() {
+Map* Map::GetMap() {
 	if (instance == NULL) {
-		instance = std::make_shared<Map>(Map());
+		instance = new Map();
 	}
 	return instance;
 }
 
-std::shared_ptr<std::vector<char>> Map::GetMapInstance()
+std::vector<char>* Map::GetMapInstance()
 {
-	return std::make_shared<std::vector<char>>(mainMap);
+	return &mainMap;
 }
 
 Map::Map()
@@ -46,9 +47,9 @@ Map::~Map()
 {
 }
 
-std::shared_ptr<std::vector<Enemy>> Map::GetAllEnemies()
+std::vector<Enemy>* Map::GetAllEnemies()
 {
-	return std::make_shared<std::vector<Enemy>>(instance->allEnemies);
+	return &allEnemies;
 }
 
 void Map::ChangeMap(int index, char element)
