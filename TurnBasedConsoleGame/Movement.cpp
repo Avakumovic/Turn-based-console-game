@@ -20,24 +20,23 @@ Movement::~Movement()
 //skloni ovaj parametar
 void Movement::MovePlayer(int pressed_key)
 {
-	std::shared_ptr<Player> thePlayer(Player::GetPlayer());
 	int temp_pos;
 	switch (pressed_key)
 	{
 	case 80: //down
-		temp_pos = thePlayer->GetPosition() +_lineSize;
+		temp_pos = Player::GetPlayer()->GetPosition() +_lineSize;
 		Move(temp_pos);
 		break;
 	case 72: //up
-		temp_pos = thePlayer->GetPosition() - _lineSize;
+		temp_pos = Player::GetPlayer()->GetPosition() - _lineSize;
 		Move(temp_pos);
 		break;
 	case 77: //right
-		temp_pos = thePlayer->GetPosition() + 1;
+		temp_pos = Player::GetPlayer()->GetPosition() + 1;
 		Move(temp_pos);
 		break;
 	case 75: //left
-		temp_pos = thePlayer->GetPosition() - 1;
+		temp_pos = Player::GetPlayer()->GetPosition() - 1;
 		Move(temp_pos);
 		break;
 	default:
@@ -49,7 +48,7 @@ void Movement::Move(int targetPos)
 {
 	std::shared_ptr<Render> render(Render::GetRender());
 	Map* mapload(Map::GetMap());
-	std::shared_ptr<Player> thePlayer(Player::GetPlayer());
+	Player* thePlayer = Player::GetPlayer();
 	switch ((*(mapload->GetMapInstance()))[targetPos])
 	{
 	case ' ':
@@ -78,9 +77,8 @@ void Movement::Move(int targetPos)
 
 void Movement::HitsAchieved(Enemy& enemy)
 {
-	std::shared_ptr<Player> thePlayer(Player::GetPlayer());
-	thePlayer->ChangeHealth(enemy.GetDamage(), '-');
-	enemy.ChangeHealth(thePlayer->GetDamage(), '-');
+	Player::GetPlayer()->ChangeHealth(enemy.GetDamage(), '-');
+	enemy.ChangeHealth(Player::GetPlayer()->GetDamage(), '-');
 }
 
 void Movement::EnemyInteraction(int new_index)

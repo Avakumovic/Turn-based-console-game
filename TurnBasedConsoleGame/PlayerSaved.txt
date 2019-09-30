@@ -1,0 +1,1 @@
+22 serialization::archive 17 0 0 0 0 21 Thunderfury (+25 Dmg) 0 25 0 0  0 0 0 0 1 176 0 0 3 0 21 Thunderfury (+25 Dmg) 0 25 0 23 Savage dagger (+15 Dmg) 0 15 0 23 Savage dagger (+15 Dmg) 0 15 0 0 0 4 Hero 200 200 45 0

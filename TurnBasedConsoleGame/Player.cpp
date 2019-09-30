@@ -1,13 +1,15 @@
 #include "pch.h"
 #include "Player.h"
+#include <iostream>
+#include <fstream>
 
-std::shared_ptr<Player> Player::instance = NULL;
+Player* Player::instance = NULL;
 
-std::shared_ptr<Player> Player::GetPlayer() {
+Player* Player::GetPlayer() {
 	if (instance == NULL) {
-		instance = std::make_shared<Player>(Player());
+		instance = new Player();
 	}
-	return (instance);
+	return instance;
 }
 
 Player::Player()
@@ -97,6 +99,20 @@ void Player::AddItemToInventory(Item newItem)
 std::vector<Item> Player::GetInventoryItems()
 {
 	return _inventory;
+}
+
+void Player::SavePlayer()
+{
+	std::ofstream file{ "PlayerSaved.txt" };
+	boost::archive::text_oarchive outputArchive{ file };
+	outputArchive << *instance;
+}
+
+void Player::LoadPlayer()
+{
+	std::ifstream file{"PlayerSaved.txt"};
+	boost::archive::text_iarchive inputArchive{file};
+	inputArchive >> *instance;
 }
 
 void Player::RemoveItemFromInventory(int index)

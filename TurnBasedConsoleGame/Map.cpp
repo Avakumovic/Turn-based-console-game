@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Map.h"
+#include "Enemy.h"
 #include <iostream>
 #include <memory>
 #include <fstream>
@@ -10,7 +11,6 @@
 #include <algorithm> 
 
 Map* Map::instance = NULL;
-//std::vector<Enemy> Map::allEnemies;
 
 Map* Map::GetMap() {
 	if (instance == NULL) {
@@ -55,4 +55,18 @@ std::vector<Enemy>* Map::GetAllEnemies()
 void Map::ChangeMap(int index, char element)
 {
 	mainMap[index] = element;
+}
+
+void Map::SaveMap()
+{
+	std::ofstream file{ "MapSaved.txt" };
+	boost::archive::text_oarchive outputArchive{ file };
+	outputArchive << *instance;
+}
+
+void Map::LoadMap()
+{
+	std::ifstream file{ "MapSaved.txt" };
+	boost::archive::text_iarchive inputArchive{ file };
+	inputArchive >> *instance;
 }

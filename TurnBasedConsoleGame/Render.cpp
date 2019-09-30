@@ -69,5 +69,17 @@ void Render::NewItemPrint(std::string itemName)
 
 void Render::ClearLines()
 {
-	std::cout << "\33[2K\r" << std::endl << "\33[2K\r" << std::endl << "\33[2K\r" << std::endl;
+	std::cout << "\33[2K\r" << std::endl << "\33[2K\r" << std::endl << "\33[2K\r" << std::endl << "\33[2K\r" << std::endl;
 }
+
+void Render::GameSaved()
+{
+	std::cout << "Game saved!" << "                                                 " << std::endl;
+}
+
+void Render::GameLoaded()
+{
+	std::cout << "Game loaded!" << "                                                 " << std::endl;
+}
+
+

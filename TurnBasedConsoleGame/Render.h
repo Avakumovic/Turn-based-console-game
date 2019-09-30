@@ -15,5 +15,7 @@ public:
 	void ItemPrintRender(Item&);
 	void NewItemPrint(std::string);
 	void ClearLines();
+	void GameSaved();
+	void GameLoaded();
 };
 
