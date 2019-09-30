@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Item.h"
-#include <utility> 
+#include <utility>
+#include <fstream>
 
 Item::Item(std::string name, int dmg, int hp, ItemType type)
 {
@@ -47,8 +48,8 @@ void Item::SetItemType(ItemType itemType) {
 
 void Item::GetItemList()
 {
-	this->itemList.insert(std::make_pair(1, Item("Thunderfury, Blessed Blade of the Windseeker (+15 Dmg)", 15, 0, ItemType::Weapon)));
-	this->itemList.insert(std::make_pair(2, Item("Sulfuras, Hand of Ragnaros (+25 Dmg)", 25, 0, ItemType::Weapon)));
+	this->itemList.insert(std::make_pair(1, Item("Savage dagger (+15 Dmg)", 15, 0, ItemType::Weapon)));
+	this->itemList.insert(std::make_pair(2, Item("Thunderfury (+25 Dmg)", 25, 0, ItemType::Weapon)));
 	this->itemList.insert(std::make_pair(3, Item("Caparace armor (+130 HP)", 0, 130, ItemType::Armor)));
 	this->itemList.insert(std::make_pair(4, Item("Champion's breastplate (+200 HP)", 0, 200, ItemType::Armor)));
 	this->itemList.insert(std::make_pair(5, Item("Lesser healing potion (Heal 130)", 0, 130, ItemType::Potion)));
@@ -59,4 +60,14 @@ Item Item::GetItem(int randomNum)
 {
 	auto iter = itemList.find(randomNum);
 	return iter->second;
+}
+
+void Item::SaveItem()
+{
+	
+}
+
+void Item::LoadItem()
+{
+	
 }

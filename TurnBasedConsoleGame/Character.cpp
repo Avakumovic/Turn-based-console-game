@@ -9,6 +9,16 @@ Character::~Character()
 {
 }
 
+void Character::SetIndex(int index)
+{
+	this->_index = index;
+}
+
+int Character::GetIndex()
+{
+	return _index;
+}
+
 std::string Character::GetName() {
 	return _name;
 }

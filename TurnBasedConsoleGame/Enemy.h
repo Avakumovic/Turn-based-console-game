@@ -8,6 +8,5 @@ public:
 	Enemy(std::string, int, int, int);
 	Enemy();
 	~Enemy();
-
 };
 

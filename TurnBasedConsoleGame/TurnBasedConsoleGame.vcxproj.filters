@@ -36,9 +36,6 @@
     <ClInclude Include="Enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -49,6 +46,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Render.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveLoad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,9 +71,6 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
@@ -86,6 +86,9 @@
     <ClCompile Include="Render.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="SaveLoad.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Map.txt">
@@ -94,11 +97,13 @@
     <Text Include="MapSaved.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="ItemsSaved.txt">
+    <Text Include="PlayerSaved.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="EnemiesSaved.txt">
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TurnBasedConsoleGame.rc">
       <Filter>Resource Files</Filter>
-    </Text>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

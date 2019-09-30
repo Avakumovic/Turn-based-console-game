@@ -30,11 +30,10 @@ bool InventoryUI::GetInventoryActive()
 void InventoryUI::OpenInventory(int pressed_key)
 {
 	std::shared_ptr<Render> render(Render::GetRender());
-	std::shared_ptr<Player> player(Player::GetPlayer());
 	if (pressed_key == 105) {
 		_inventoryActive = true;
 		system("cls");
-		std::vector<Item> inventoryItems = player->GetInventoryItems();
+		std::vector<Item> inventoryItems = Player::GetPlayer()->GetInventoryItems();
 		for (unsigned int i = 0; i < inventoryItems.size(); i++) {
 			std::cout << i + 1 << ". " << (inventoryItems[i]).GetItemName() << std::endl;
 		}
@@ -44,7 +43,7 @@ void InventoryUI::OpenInventory(int pressed_key)
 			char pressed_key = _getch();
 			key = pressed_key - '0';
 			if (key > (signed)0 && key <= (signed)inventoryItems.size()) {
-				player->UseItem(key-1);
+				Player::GetPlayer()->UseItem(key-1);
 				_inventoryActive = false;
 				system("cls");
 				render->MapRender();
